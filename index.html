@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>微博地点查询工具 - Weibo POI Query Tool</title>
+    <meta name="description" content="基于微博开放API的地点信息查询工具，提供精准的地理位置查询服务。">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .logo {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(45deg, #ff6b6b, #ffd93d);
+            border-radius: 20px;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            color: white;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            color: #2c3e50;
+            margin-bottom: 10px;
+            background: linear-gradient(45deg, #3498db, #2c3e50);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            color: #7f8c8d;
+            margin-bottom: 30px;
+        }
+        
+        .main-content {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            margin-bottom: 30px;
+        }
+        
+        .features {
+            margin: 30px 0;
+        }
+        
+        .feature-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 25px;
+            padding: 15px;
+            border-radius: 10px;
+            background: #f8f9fa;
+            transition: transform 0.3s ease;
+        }
+        
+        .feature-item:hover {
+            transform: translateX(10px);
+            background: #eef5ff;
+        }
+        
+        .feature-icon {
+            width: 50px;
+            height: 50px;
+            background: #3498db;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 20px;
+            color: white;
+            font-size: 24px;
+            flex-shrink: 0;
+        }
+        
+        .feature-text h3 {
+            color: #2c3e50;
+            margin-bottom: 5px;
+        }
+        
+        .feature-text p {
+            color: #666;
+        }
+        
+        .status-badge {
+            display: inline-block;
+            background: #e74c3c;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin: 20px 0;
+        }
+        
+        .contact-info {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 30px;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            color: #7f8c8d;
+            font-size: 0.9rem;
+        }
+        
+        .links {
+            margin: 20px 0;
+        }
+        
+        .links a {
+            color: #3498db;
+            text-decoration: none;
+            margin: 0 10px;
+            transition: color 0.3s;
+        }
+        
+        .links a:hover {
+            color: #2980b9;
+            text-decoration: underline;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .main-content {
+                padding: 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">📍</div>
+            <h1>微博地点查询工具</h1>
+            <p class="subtitle">基于微博开放API的专业地理位置信息服务</p>
+            <div class="status-badge">应用审核中</div>
+        </header>
+        
+        <div class="main-content">
+            <h2>应用介绍</h2>
+            <p>本应用是专为微博地理位置数据查询设计的工具，提供全面、准确的地点信息服务。通过微博官方API接口，为用户带来便捷的地理位置查询体验。</p>
+            
+            <div class="features">
+                <h3>主要功能</h3>
+                
+                <div class="feature-item">
+                    <div class="feature-icon">🔍</div>
+                    <div class="feature-text">
+                        <h3>地点信息查询</h3>
+                        <p>精确查询微博地点的详细信息，包括地址、坐标、分类等</p>
+                    </div>
+                </div>
+                
+                <div class="feature-item">
+                    <div class="feature-icon">🗺️</div>
+                    <div class="feature-text">
+                        <h3>地理位置搜索</h3>
+                        <p>支持关键词搜索地理位置，快速找到目标地点</p>
+                    </div>
+                </div>
+                
+                <div class="feature-item">
+                    <div class="feature-icon">📊</div>
+                    <div class="feature-text">
+                        <h3>数据可视化</h3>
+                        <p>直观展示地点的热门度、用户活跃度等统计信息</p>
+                    </div>
+                </div>
+                
+                <div class="feature-item">
+                    <div class="feature-icon">📱</div>
+                    <div class="feature-text">
+                        <h3>多端适配</h3>
+                        <p>响应式设计，完美支持电脑、平板和手机访问</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="contact-info">
+                <h3>隐私与安全</h3>
+                <p>本应用严格遵守微博开放平台协议，仅读取公开的地点信息数据，不收集用户个人隐私信息。所有数据查询均为实时API调用，不存储用户数据。</p>
+                <p><strong>隐私政策：</strong> <a href="privacy.html">查看完整隐私政策</a></p>
+            </div>
+        </div>
+        
+        <footer>
+            <div class="links">
+                <a href="privacy.html">隐私政策</a>
+                <a href="javascript:void(0)">使用条款</a>
+                <a href="mailto:your-email@example.com">联系我们</a>
+            </div>
+            <p>© 2024 微博地点查询工具 | 基于微博开放平台开发</p>
+            <p>当前状态：应用审核中 | 预计上线时间：审核通过后</p>
+        </footer>
+    </div>
+</body>
+</html>
